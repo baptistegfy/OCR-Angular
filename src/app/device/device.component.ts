@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-device',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./device.component.scss'],
 })
 export class DeviceComponent implements OnInit {
-  deviceName: string = 'Machine à laver';
+  @Input() deviceName!: string;
   deviceStatus: string = 'éteint';
 
   constructor() {}
