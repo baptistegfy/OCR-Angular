@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class DeviceComponent implements OnInit {
   @Input() deviceName!: string;
-  deviceStatus: string = 'éteint';
+  @Input() deviceStatus!: string;
 
   constructor() {}
 
