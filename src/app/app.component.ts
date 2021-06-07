@@ -27,7 +27,10 @@ export class AppComponent implements OnInit {
     this.devices = this.deviceService.devices;
   }
 
-  onAllumer() {
-    console.log('On allume tout !');
+  onTurnOn() {
+    this.deviceService.switchOnAll();
+  }
+  onTurnOff() {
+    this.deviceService.switchOffAll();
   }
 }
