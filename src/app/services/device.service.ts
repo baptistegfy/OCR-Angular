@@ -13,4 +13,16 @@ export class DeviceService {
       status: 'allumé',
     },
   ];
+
+  switchOnAll() {
+    for (let device of this.devices) {
+      device.status = 'allumé';
+    }
+  }
+
+  switchOffAll() {
+    for (let device of this.devices) {
+      device.status = 'éteint';
+    }
+  }
 }
