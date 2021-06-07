@@ -5,12 +5,21 @@
     'list-group-item-danger': deviceStatus === 'éteint'
   }"
 >
-  <div
-    style="width: 20px; height: 20px; background-color: red"
-    *ngIf="deviceStatus === 'éteint'"
-  ></div>
   <h4 [ngStyle]="{ color: getColor() }">
     Appareil : {{ deviceName }} -- Statut : {{ getStatus() }}
   </h4>
-  <input type="text" class="form-control" [(ngModel)]="deviceName" />
+  <button
+    class="btn btn-success btn-sm"
+    (click)="onSwitchOn()"
+    [disabled]="deviceStatus === 'allumé'"
+  >
+    Allumer
+  </button>
+  <button
+    class="btn btn-danger btn-sm"
+    (click)="onSwitchOff()"
+    [disabled]="deviceStatus === 'éteint'"
+  >
+    Eteindre
+  </button>
 </li>
