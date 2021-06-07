@@ -4,16 +4,9 @@
       <h2>Mes appareils</h2>
       <ul class="list-group">
         <app-device
-          [deviceName]="deviceOne"
-          [deviceStatus]="'éteint'"
-        ></app-device>
-        <app-device
-          [deviceName]="deviceTwo"
-          [deviceStatus]="'éteint'"
-        ></app-device>
-        <app-device
-          [deviceName]="deviceThree"
-          [deviceStatus]="'allumé'"
+          *ngFor="let device of devices"
+          [deviceName]="device.name"
+          [deviceStatus]="device.status"
         ></app-device>
       </ul>
       <button
