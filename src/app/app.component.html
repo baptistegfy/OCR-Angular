@@ -12,12 +12,11 @@
           [deviceStatus]="device.status"
         ></app-device>
       </ul>
-      <button
-        class="btn btn-success"
-        [disabled]="!isAuth"
-        (click)="onAllumer()"
-      >
+      <button class="btn btn-success" [disabled]="!isAuth" (click)="onTurnOn()">
         Tout allumer
+      </button>
+      <button class="btn btn-danger" [disabled]="!isAuth" (click)="onTurnOff()">
+        Tout éteindre
       </button>
     </div>
   </div>
