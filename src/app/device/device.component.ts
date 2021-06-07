@@ -12,4 +12,8 @@ export class DeviceComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  getStatus() {
+    return this.deviceStatus;
+  }
 }
