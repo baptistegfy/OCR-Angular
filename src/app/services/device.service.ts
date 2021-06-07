@@ -25,4 +25,10 @@ export class DeviceService {
       device.status = 'éteint';
     }
   }
+  switchOnOne(index: number) {
+    this.devices[index].status = 'allumé';
+  }
+  switchOffOne(index: number) {
+    this.devices[index].status = 'éteint';
+  }
 }
