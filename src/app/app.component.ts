@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   isAuth = false;
+
+  constructor() {
+    setTimeout(() => {
+      this.isAuth = true;
+    }, 4000);
+  }
 }
