@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DeviceService } from './services/device.service';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +30,7 @@ export class AppComponent {
     },
   ];
 
-  constructor() {
+  constructor(private deviceService: DeviceService) {
     setTimeout(() => {
       this.isAuth = true;
     }, 4000);
