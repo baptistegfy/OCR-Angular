@@ -7,7 +7,8 @@
       </p>
       <ul class="list-group">
         <app-device
-          *ngFor="let device of devices"
+          *ngFor="let device of devices; let i = index"
+          [deviceIndex]="i"
           [deviceName]="device.name"
           [deviceStatus]="device.status"
         ></app-device>

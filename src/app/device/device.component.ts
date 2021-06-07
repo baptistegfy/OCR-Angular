@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class DeviceComponent implements OnInit {
   @Input() deviceName!: string;
   @Input() deviceStatus!: string;
+  @Input() deviceIndex!: number;
 
   constructor() {}
 
