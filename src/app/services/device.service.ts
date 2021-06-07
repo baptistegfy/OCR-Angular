@@ -12,6 +12,18 @@ export class DeviceService {
       name: 'Ordinateur',
       status: 'allumé',
     },
+    {
+      name: 'Téléphone',
+      status: 'allumé',
+    },
+    {
+      name: 'Enceinte',
+      status: 'allumé',
+    },
+    {
+      name: 'Vidéo projecteur',
+      status: 'allumé',
+    },
   ];
 
   switchOnAll() {
