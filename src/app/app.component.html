@@ -7,7 +7,13 @@
         <app-device></app-device>
         <app-device></app-device>
       </ul>
-      <button class="btn btn-success" [disabled]="!isAuth">Tout allumer</button>
+      <button
+        class="btn btn-success"
+        [disabled]="!isAuth"
+        (click)="onAllumer()"
+      >
+        Tout allumer
+      </button>
     </div>
   </div>
 </div>
