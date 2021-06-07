@@ -1,0 +1,25 @@
+<li
+  [ngClass]="{
+    'list-group-item': true,
+    'list-group-item-success': deviceStatus === 'allumé',
+    'list-group-item-danger': deviceStatus === 'éteint'
+  }"
+>
+  <h4 [ngStyle]="{ color: getColor() }">
+    Appareil : {{ deviceName }} -- Statut : {{ getStatus() }}
+  </h4>
+  <button
+    class="btn btn-success btn-sm"
+    (click)="onSwitchOn()"
+    [disabled]="deviceStatus === 'allumé'"
+  >
+    Allumer
+  </button>
+  <button
+    class="btn btn-danger btn-sm"
+    (click)="onSwitchOff()"
+    [disabled]="deviceStatus === 'éteint'"
+  >
+    Eteindre
+  </button>
+</li>
