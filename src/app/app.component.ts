@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DeviceService } from './services/device.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { DeviceService } from './services/device.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   isAuth = false;
   lastUpdate: Promise<Date> = new Promise((resolve, reject) => {
     const date = new Date();
@@ -15,26 +15,18 @@ export class AppComponent {
     }, 2000);
   });
 
-  devices = [
-    {
-      name: 'Machine à laver',
-      status: 'éteint',
-    },
-    {
-      name: 'Télévision',
-      status: 'éteint',
-    },
-    {
-      name: 'Ordinateur',
-      status: 'allumé',
-    },
-  ];
+  devices!: any[];
 
   constructor(private deviceService: DeviceService) {
     setTimeout(() => {
       this.isAuth = true;
     }, 4000);
   }
+
+  ngOnInit() {
+    this.devices = this.deviceService.devices;
+  }
+
   onAllumer() {
     console.log('On allume tout !');
   }
