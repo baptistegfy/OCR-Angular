@@ -1,1 +1,18 @@
-<p>device-view works!</p>
+<div class="col-xs-12">
+  <h2>Mes appareils</h2>
+  <p>Mis à jour : {{ lastUpdate | async | date: "yMMMMEEEEd" | uppercase }}</p>
+  <ul class="list-group">
+    <app-device
+      *ngFor="let device of devices; let i = index"
+      [deviceIndex]="i"
+      [deviceName]="device.name"
+      [deviceStatus]="device.status"
+    ></app-device>
+  </ul>
+  <button class="btn btn-success" [disabled]="!isAuth" (click)="onTurnOn()">
+    Tout allumer
+  </button>
+  <button class="btn btn-danger" [disabled]="!isAuth" (click)="onTurnOff()">
+    Tout éteindre
+  </button>
+</div>
