@@ -10,6 +10,7 @@ import { DeviceService } from './services/device.service';
 import { AuthComponent } from './auth/auth.component';
 import { DeviceViewComponent } from './device-view/device-view.component';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 const appRoutes: Routes = [
   { path: 'devices', component: DeviceViewComponent },
@@ -30,7 +31,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [DeviceService],
+  providers: [DeviceService, AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
