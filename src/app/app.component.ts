@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DeviceService } from './services/device.service';
+import { Device } from './types/device';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit {
     }, 2000);
   });
 
-  devices!: any[];
+  devices!: Device[];
 
   constructor(private deviceService: DeviceService) {
     setTimeout(() => {
