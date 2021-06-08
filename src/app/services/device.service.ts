@@ -27,15 +27,21 @@ export class DeviceService {
   ];
 
   switchOnAll() {
-    for (let device of this.devices) {
+    this.devices.forEach((device) => {
       device.status = 'allumé';
-    }
+    });
+    //   for (let device of this.devices) {
+    //     device.status = 'allumé';
+    //   }
   }
 
   switchOffAll() {
-    for (let device of this.devices) {
+    this.devices.forEach((device) => {
       device.status = 'éteint';
-    }
+    });
+    // for (let device of this.devices) {
+    //   device.status = 'éteint';
+    // }
   }
   switchOnOne(index: number) {
     this.devices[index].status = 'allumé';
