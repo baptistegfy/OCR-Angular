@@ -11,6 +11,7 @@ import { AuthComponent } from './auth/auth.component';
 import { DeviceViewComponent } from './device-view/device-view.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import { SingleDeviceComponent } from './single-device/single-device.component';
 
 const appRoutes: Routes = [
   { path: 'devices', component: DeviceViewComponent },
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
     DeviceComponent,
     AuthComponent,
     DeviceViewComponent,
+    SingleDeviceComponent,
   ],
   imports: [
     BrowserModule,
