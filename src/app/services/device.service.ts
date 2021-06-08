@@ -6,7 +6,7 @@ export class DeviceService {
     },
     {
       name: 'Télévision',
-      status: 'éteint',
+      status: 'allumé',
     },
     {
       name: 'Ordinateur',
@@ -22,7 +22,7 @@ export class DeviceService {
     },
     {
       name: 'Vidéo projecteur',
-      status: 'allumé',
+      status: 'éteint',
     },
   ];
 
