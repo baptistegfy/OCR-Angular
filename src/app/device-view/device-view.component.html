@@ -7,6 +7,7 @@
       [deviceIndex]="i"
       [deviceName]="device.name"
       [deviceStatus]="device.status"
+      [id]="device.id"
     ></app-device>
   </ul>
   <button class="btn btn-success" [disabled]="!isAuth" (click)="onTurnOn()">
