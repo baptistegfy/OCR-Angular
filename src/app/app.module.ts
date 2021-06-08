@@ -15,6 +15,7 @@ import { SingleDeviceComponent } from './single-device/single-device.component';
 
 const appRoutes: Routes = [
   { path: 'devices', component: DeviceViewComponent },
+  { path: 'devices/:id', component: SingleDeviceComponent },
   { path: 'auth', component: AuthComponent },
   { path: '', component: DeviceViewComponent },
 ];
