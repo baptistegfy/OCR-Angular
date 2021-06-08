@@ -20,13 +20,23 @@ export class DeviceComponent implements OnInit {
   }
 
   getColor() {
-    if (this.deviceStatus === 'allumé') {
-      return 'green';
-    } else if (this.deviceStatus === 'éteint') {
-      return 'red';
-    } else {
-      return 'black';
+    switch (this.deviceStatus) {
+      case 'allumé':
+        return 'green';
+        break;
+      case 'éteint':
+        return 'red';
+        break;
+      default:
+        return 'black';
     }
+    // if (this.deviceStatus === 'allumé') {
+    //   return 'green';
+    // } else if (this.deviceStatus === 'éteint') {
+    //   return 'red';
+    // } else {
+    //   return 'black';
+    // }
   }
 
   onSwitchOn() {
