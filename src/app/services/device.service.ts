@@ -51,22 +51,17 @@ export class DeviceService {
     this.devices.forEach((device) => {
       device.status = 'allumé';
     });
-    //   for (let device of this.devices) {
-    //     device.status = 'allumé';
-    //   }
+    this.emitDeviceSubject();
   }
 
   switchOffAll() {
     this.devices.forEach((device) => {
       device.status = 'éteint';
     });
-    // for (let device of this.devices) {
-    //   device.status = 'éteint';
-    // }
+    this.emitDeviceSubject();
   }
   toggleDeviceStatus(id: number) {
     const device = this.getDeviceById(id);
-    device.status = 'allumé' ? 'éteint' : 'allumé';
-    // this.devices[index].status = 'allumé';
+    device.status = device.status === 'allumé' ? 'éteint' : 'allumé';
   }
 }
