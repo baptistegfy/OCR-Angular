@@ -4,10 +4,7 @@
   <ul class="list-group">
     <app-device
       *ngFor="let device of devices; let i = index"
-      [deviceIndex]="i"
-      [deviceName]="device.name"
-      [deviceStatus]="device.status"
-      [id]="device.id"
+      [device]="device"
     ></app-device>
   </ul>
   <button class="btn btn-success" [disabled]="!isAuth" (click)="onTurnOn()">

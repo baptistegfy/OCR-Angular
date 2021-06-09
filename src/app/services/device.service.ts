@@ -34,11 +34,11 @@ export class DeviceService {
     },
   ];
 
-  getDeviceById(id: number): any {
+  getDeviceById(id: number): Device {
     const device = this.devices.find((obj) => {
       return obj.id === id;
     });
-    return device;
+    return <Device>device;
   }
 
   switchOnAll() {
@@ -58,10 +58,9 @@ export class DeviceService {
     //   device.status = 'éteint';
     // }
   }
-  switchOnOne(index: number) {
-    this.devices[index].status = 'allumé';
-  }
-  switchOffOne(index: number) {
-    this.devices[index].status = 'éteint';
+  toggleDeviceStatus(id: number) {
+    const device = this.getDeviceById(id);
+    device.status = 'allumé' ? 'éteint' : 'allumé';
+    // this.devices[index].status = 'allumé';
   }
 }

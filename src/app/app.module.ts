@@ -25,7 +25,7 @@ const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: '', component: DeviceViewComponent },
   { path: 'error404', component: NotFoundComponent },
-  { path: '**', redirectTo: 'error404' },
+  { path: '**', redirectTo: 'auth', pathMatch: 'full' },
 ];
 @NgModule({
   declarations: [

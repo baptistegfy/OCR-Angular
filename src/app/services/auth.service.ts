@@ -2,7 +2,7 @@ export class AuthService {
   isAuth: boolean = false;
 
   signIn() {
-    return new Promise((resolve, reject) => {
+    return new Promise<boolean>((resolve, reject) => {
       setTimeout(() => {
         this.isAuth = true;
         resolve(true);
