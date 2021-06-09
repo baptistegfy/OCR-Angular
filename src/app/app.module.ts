@@ -12,12 +12,20 @@ import { DeviceViewComponent } from './device-view/device-view.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { SingleDeviceComponent } from './single-device/single-device.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { AuthGuard } from './services/auth-guard.service';
 
 const appRoutes: Routes = [
-  { path: 'devices', component: DeviceViewComponent },
-  { path: 'devices/:id', component: SingleDeviceComponent },
+  { path: 'devices', canActivate: [AuthGuard], component: DeviceViewComponent },
+  {
+    path: 'devices/:id',
+    canActivate: [AuthGuard],
+    component: SingleDeviceComponent,
+  },
   { path: 'auth', component: AuthComponent },
   { path: '', component: DeviceViewComponent },
+  { path: 'error404', component: NotFoundComponent },
+  { path: '**', redirectTo: 'error404' },
 ];
 @NgModule({
   declarations: [
@@ -27,6 +35,7 @@ const appRoutes: Routes = [
     AuthComponent,
     DeviceViewComponent,
     SingleDeviceComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +43,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [DeviceService, AuthService],
+  providers: [DeviceService, AuthService, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
