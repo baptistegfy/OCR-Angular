@@ -1,7 +1,9 @@
+import { Subject } from 'rxjs';
 import { Device } from '../types/device';
 
 export class DeviceService {
-  devices: Device[] = [
+  devicesSubject = new Subject<Device[]>();
+  private devices: Device[] = [
     {
       id: 1,
       name: 'Machine à laver',
@@ -33,6 +35,10 @@ export class DeviceService {
       status: 'éteint',
     },
   ];
+
+  emitDeviceSubject() {
+    this.devicesSubject.next(this.devices.slice());
+  }
 
   getDeviceById(id: number): Device {
     const device = this.devices.find((obj) => {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { DeviceService } from '../services/device.service';
 import { Device } from '../types/device';
 
@@ -17,6 +18,7 @@ export class DeviceViewComponent implements OnInit {
   });
 
   devices!: Device[];
+  deviceSubcription!: Subscription;
 
   constructor(private deviceService: DeviceService) {
     setTimeout(() => {
@@ -25,7 +27,12 @@ export class DeviceViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.devices = this.deviceService.devices;
+    this.deviceSubcription = this.deviceService.devicesSubject.subscribe(
+      (devices: Device[]) => {
+        this.devices = devices;
+      }
+    );
+    this.deviceService.emitDeviceSubject();
   }
 
   onTurnOn() {
