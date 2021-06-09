@@ -14,6 +14,7 @@ import { AuthService } from './services/auth.service';
 import { SingleDeviceComponent } from './single-device/single-device.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './services/auth-guard.service';
+import { EditDeviceComponent } from './edit-device/edit-device.component';
 
 const appRoutes: Routes = [
   { path: 'devices', canActivate: [AuthGuard], component: DeviceViewComponent },
@@ -36,6 +37,7 @@ const appRoutes: Routes = [
     DeviceViewComponent,
     SingleDeviceComponent,
     NotFoundComponent,
+    EditDeviceComponent,
   ],
   imports: [
     BrowserModule,
