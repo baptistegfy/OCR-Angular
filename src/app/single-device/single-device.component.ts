@@ -8,8 +8,8 @@ import { DeviceService } from '../services/device.service';
   styleUrls: ['./single-device.component.scss'],
 })
 export class SingleDeviceComponent implements OnInit {
-  name: string = 'Appareil';
-  status: string = 'Status';
+  name!: string;
+  status!: string;
 
   constructor(
     private deviceService: DeviceService,
