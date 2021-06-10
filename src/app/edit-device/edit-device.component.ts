@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./edit-device.component.scss'],
 })
 export class EditDeviceComponent implements OnInit {
+  defaultOnOff: string = 'off';
   constructor() {}
 
   ngOnInit(): void {}
