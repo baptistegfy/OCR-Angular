@@ -1,8 +1,8 @@
 <li
   [ngClass]="{
     'list-group-item': true,
-    'list-group-item-success': device.status === 'allumé',
-    'list-group-item-danger': device.status === 'éteint'
+    'list-group-item-success': device.status === 'on',
+    'list-group-item-danger': device.status === 'off'
   }"
 >
   <h4 [ngStyle]="{ color: getColor() }">
@@ -12,14 +12,14 @@
   <button
     class="btn btn-success btn-sm"
     (click)="onSwitch(device.id)"
-    [disabled]="device.status === 'allumé'"
+    [disabled]="device.status === 'on'"
   >
     Allumer
   </button>
   <button
     class="btn btn-danger btn-sm"
     (click)="onSwitch(device.id)"
-    [disabled]="device.status === 'éteint'"
+    [disabled]="device.status === 'off'"
   >
     Eteindre
   </button>
