@@ -23,6 +23,7 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard],
     component: SingleDeviceComponent,
   },
+  { path: 'edit', canActivate: [AuthGuard], component: EditDeviceComponent },
   { path: 'auth', component: AuthComponent },
   { path: '', component: DeviceViewComponent },
   { path: 'error404', component: NotFoundComponent },
