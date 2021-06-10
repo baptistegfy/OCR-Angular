@@ -8,11 +8,6 @@ import { Device } from '../types/device';
   styleUrls: ['./device.component.scss'],
 })
 export class DeviceComponent implements OnInit {
-  // @Input() deviceName!: string;
-  // @Input() deviceStatus!: string;
-  // @Input() deviceIndex!: number;
-  // @Input() id!: number;
-
   @Input() device!: Device;
 
   constructor(private deviceService: DeviceService) {}
@@ -31,21 +26,8 @@ export class DeviceComponent implements OnInit {
       default:
         return 'black';
     }
-    // if (this.deviceStatus === 'allumé') {
-    //   return 'green';
-    // } else if (this.deviceStatus === 'éteint') {
-    //   return 'red';
-    // } else {
-    //   return 'black';
-    // }
   }
 
-  // onSwitchOn() {
-  //   this.deviceService.switchOnOne(this.device.index);
-  // }
-  // onSwitchOff() {
-  //   this.deviceService.switchOffOne(this.deviceIndex);
-  // }
   onSwitch(id: number) {
     this.deviceService.toggleDeviceStatus(id);
   }
