@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { DeviceService } from '../services/device.service';
 
 @Component({
   selector: 'app-edit-device',
@@ -8,11 +10,14 @@ import { NgForm } from '@angular/forms';
 })
 export class EditDeviceComponent implements OnInit {
   defaultOnOff: string = 'off';
-  constructor() {}
+  constructor(private deviceService: DeviceService, private router: Router) {}
 
   ngOnInit(): void {}
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
+    const name = form.value['name'];
+    const statut = form.value['status'];
+    this.deviceService.addDevice(name, status);
+    this.router.navigate(['/devices']);
   }
 }
