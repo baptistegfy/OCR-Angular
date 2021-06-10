@@ -1,20 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { MyFirstComponent } from './my-first/my-first.component';
-import { DeviceComponent } from './device/device.component';
-import { DeviceService } from './services/device.service';
-import { AuthComponent } from './auth/auth.component';
-import { DeviceViewComponent } from './device-view/device-view.component';
-import { RouterModule, Routes } from '@angular/router';
-import { AuthService } from './services/auth.service';
-import { SingleDeviceComponent } from './single-device/single-device.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { AuthGuard } from './services/auth-guard.service';
+import { DeviceComponent } from './device/device.component';
+import { DeviceViewComponent } from './device-view/device-view.component';
+import { SingleDeviceComponent } from './single-device/single-device.component';
 import { EditDeviceComponent } from './edit-device/edit-device.component';
+import { AuthComponent } from './auth/auth.component';
+import { UserListComponent } from './user-list/user-list.component';
+
+import { DeviceService } from './services/device.service';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth-guard.service';
+import { UserService } from './services/user.service';
 
 const appRoutes: Routes = [
   { path: 'devices', canActivate: [AuthGuard], component: DeviceViewComponent },
@@ -25,6 +29,7 @@ const appRoutes: Routes = [
   },
   { path: 'edit', canActivate: [AuthGuard], component: EditDeviceComponent },
   { path: 'auth', component: AuthComponent },
+  { path: 'users', component: UserListComponent },
   { path: '', component: DeviceViewComponent },
   { path: 'error404', component: NotFoundComponent },
   { path: '**', redirectTo: 'auth', pathMatch: 'full' },
@@ -39,14 +44,16 @@ const appRoutes: Routes = [
     SingleDeviceComponent,
     NotFoundComponent,
     EditDeviceComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [DeviceService, AuthService, AuthGuard],
+  providers: [DeviceService, AuthService, AuthGuard, UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
