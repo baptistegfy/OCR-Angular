@@ -7,32 +7,32 @@ export class DeviceService {
     {
       id: 1,
       name: 'Machine à laver',
-      status: 'éteint',
+      status: 'off',
     },
     {
       id: 2,
       name: 'Télévision',
-      status: 'allumé',
+      status: 'on',
     },
     {
       id: 3,
       name: 'Ordinateur',
-      status: 'allumé',
+      status: 'on',
     },
     {
       id: 4,
       name: 'Téléphone',
-      status: 'allumé',
+      status: 'on',
     },
     {
       id: 5,
       name: 'Enceinte',
-      status: 'allumé',
+      status: 'on',
     },
     {
       id: 6,
       name: 'Vidéo projecteur',
-      status: 'éteint',
+      status: 'off',
     },
   ];
 
@@ -49,19 +49,19 @@ export class DeviceService {
 
   switchOnAll() {
     this.devices.forEach((device) => {
-      device.status = 'allumé';
+      device.status = 'on';
     });
     this.emitDeviceSubject();
   }
 
   switchOffAll() {
     this.devices.forEach((device) => {
-      device.status = 'éteint';
+      device.status = 'off';
     });
     this.emitDeviceSubject();
   }
   toggleDeviceStatus(id: number) {
     const device = this.getDeviceById(id);
-    device.status = device.status === 'allumé' ? 'éteint' : 'allumé';
+    device.status = device.status === 'on' ? 'off' : 'on';
   }
 }
