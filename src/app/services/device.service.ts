@@ -60,8 +60,23 @@ export class DeviceService {
     });
     this.emitDeviceSubject();
   }
+
   toggleDeviceStatus(id: number) {
     const device = this.getDeviceById(id);
     device.status = device.status === 'on' ? 'off' : 'on';
+  }
+
+  addDevice(name: string, statut: string) {
+    const deviceObject = {
+      id: 0,
+      name: '',
+      status: '',
+    };
+    deviceObject.name = name;
+    deviceObject.status = status;
+    deviceObject.id = this.devices[this.devices.length - 1].id + 1;
+
+    this.devices.push(deviceObject);
+    this.emitDeviceSubject();
   }
 }
