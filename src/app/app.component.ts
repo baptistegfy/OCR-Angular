@@ -1,36 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DeviceService } from './services/device.service';
+import { Device } from './types/device';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  isAuth = false;
-  lastUpdate: Promise<Date> = new Promise((resolve, reject) => {
-    const date = new Date();
-    setTimeout(() => {
-      resolve(date);
-    }, 2000);
-  });
-
-  devices!: any[];
-
-  constructor(private deviceService: DeviceService) {
-    setTimeout(() => {
-      this.isAuth = true;
-    }, 4000);
-  }
+export class AppComponent implements OnInit, OnDestroy {
+  secondes!: number;
+  counterSubscription!: Subscription;
+  constructor() {}
 
   ngOnInit() {
-    this.devices = this.deviceService.devices;
+    const counter = Observable.interval(1000);
+    this.counterSubscription = counter.subscribe(
+      (value) => {
+        this.secondes = value;
+      },
+      (error) => {
+        console.log('Uh-oh, an error occurred! : ' + error);
+      },
+      () => {
+        console.log('Observable complete!');
+      }
+    );
   }
 
-  onTurnOn() {
-    this.deviceService.switchOnAll();
-  }
-  onTurnOff() {
-    this.deviceService.switchOffAll();
+  ngOnDestroy() {
+    this.counterSubscription.unsubscribe();
   }
 }

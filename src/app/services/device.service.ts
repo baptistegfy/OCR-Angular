@@ -1,46 +1,82 @@
+import { Subject } from 'rxjs';
+import { Device } from '../types/device';
+
 export class DeviceService {
-  devices = [
+  devicesSubject = new Subject<Device[]>();
+  private devices: Device[] = [
     {
+      id: 1,
       name: 'Machine à laver',
-      status: 'éteint',
+      status: 'off',
     },
     {
+      id: 2,
       name: 'Télévision',
-      status: 'éteint',
+      status: 'on',
     },
     {
+      id: 3,
       name: 'Ordinateur',
-      status: 'allumé',
+      status: 'on',
     },
     {
+      id: 4,
       name: 'Téléphone',
-      status: 'allumé',
+      status: 'on',
     },
     {
+      id: 5,
       name: 'Enceinte',
-      status: 'allumé',
+      status: 'on',
     },
     {
+      id: 6,
       name: 'Vidéo projecteur',
-      status: 'allumé',
+      status: 'off',
     },
   ];
 
+  emitDeviceSubject() {
+    this.devicesSubject.next(this.devices.slice());
+  }
+
+  getDeviceById(id: number): Device {
+    const device = this.devices.find((obj) => {
+      return obj.id === id;
+    });
+    return <Device>device;
+  }
+
   switchOnAll() {
-    for (let device of this.devices) {
-      device.status = 'allumé';
-    }
+    this.devices.forEach((device) => {
+      device.status = 'on';
+    });
+    this.emitDeviceSubject();
   }
 
   switchOffAll() {
-    for (let device of this.devices) {
-      device.status = 'éteint';
-    }
+    this.devices.forEach((device) => {
+      device.status = 'off';
+    });
+    this.emitDeviceSubject();
   }
-  switchOnOne(index: number) {
-    this.devices[index].status = 'allumé';
+
+  toggleDeviceStatus(id: number) {
+    const device = this.getDeviceById(id);
+    device.status = device.status === 'on' ? 'off' : 'on';
   }
-  switchOffOne(index: number) {
-    this.devices[index].status = 'éteint';
+
+  addDevice(name: string, statut: string) {
+    const deviceObject = {
+      id: 0,
+      name: '',
+      status: '',
+    };
+    deviceObject.name = name;
+    deviceObject.status = status;
+    deviceObject.id = this.devices[this.devices.length - 1].id + 1;
+
+    this.devices.push(deviceObject);
+    this.emitDeviceSubject();
   }
 }

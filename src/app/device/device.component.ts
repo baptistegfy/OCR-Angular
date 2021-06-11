@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DeviceService } from '../services/device.service';
+import { Device } from '../types/device';
 
 @Component({
   selector: 'app-device',
@@ -7,32 +8,27 @@ import { DeviceService } from '../services/device.service';
   styleUrls: ['./device.component.scss'],
 })
 export class DeviceComponent implements OnInit {
-  @Input() deviceName!: string;
-  @Input() deviceStatus!: string;
-  @Input() deviceIndex!: number;
+  @Input() device!: Device;
 
   constructor(private deviceService: DeviceService) {}
 
   ngOnInit(): void {}
 
-  getStatus() {
-    return this.deviceStatus;
-  }
+  getColor(): string {
+    // enum ?
+    switch (this.device.status) {
+      case 'allumé':
+        return 'green';
 
-  getColor() {
-    if (this.deviceStatus === 'allumé') {
-      return 'green';
-    } else if (this.deviceStatus === 'éteint') {
-      return 'red';
-    } else {
-      return 'black';
+      case 'éteint':
+        return 'red';
+
+      default:
+        return 'black';
     }
   }
 
-  onSwitchOn() {
-    this.deviceService.switchOnOne(this.deviceIndex);
-  }
-  onSwitchOff() {
-    this.deviceService.switchOffOne(this.deviceIndex);
+  onSwitch(id: number) {
+    this.deviceService.toggleDeviceStatus(id);
   }
 }
