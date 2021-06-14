@@ -1,41 +1,14 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { Device, DeviceStatus } from '../types/device';
 
+@Injectable()
 export class DeviceService {
   devicesSubject = new Subject<Device[]>();
-  private devices: Device[] = [
-    {
-      id: 1,
-      name: 'Machine à laver',
-      status: DeviceStatus.off,
-    },
-    {
-      id: 2,
-      name: 'Télévision',
-      status: DeviceStatus.on,
-    },
-    {
-      id: 3,
-      name: 'Ordinateur',
-      status: DeviceStatus.on,
-    },
-    {
-      id: 4,
-      name: 'Téléphone',
-      status: DeviceStatus.on,
-    },
-    {
-      id: 5,
-      name: 'Enceinte',
-      status: DeviceStatus.on,
-    },
-    {
-      id: 6,
-      name: 'Vidéo projecteur',
-      status: DeviceStatus.off,
-    },
-  ];
+  private devices: Device[] = [];
 
+  constructor(private httpClient: HttpClient) {}
   emitDeviceSubject() {
     this.devicesSubject.next(this.devices.slice());
   }
@@ -79,5 +52,37 @@ export class DeviceService {
 
     this.devices.push(deviceObject);
     this.emitDeviceSubject();
+  }
+
+  saveDevicesToServer() {
+    this.httpClient
+      .put(
+        'https://ocr-angular-e2ebe-default-rtdb.europe-west1.firebasedatabase.app/devices.json',
+        this.devices
+      )
+      .subscribe(
+        () => {
+          console.log('Enregistrement terminé !');
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+  }
+
+  getDevicesFromServer() {
+    this.httpClient
+      .get<Device[]>(
+        'https://ocr-angular-e2ebe-default-rtdb.europe-west1.firebasedatabase.app/devices.json'
+      )
+      .subscribe(
+        (response) => {
+          this.devices = response;
+          this.emitDeviceSubject();
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
   }
 }
