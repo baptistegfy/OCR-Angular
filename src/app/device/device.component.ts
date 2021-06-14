@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DeviceService } from '../services/device.service';
-import { Device } from '../types/device';
+import { Color, Device, DeviceStatus } from '../types/device';
 
 @Component({
   selector: 'app-device',
@@ -9,6 +9,7 @@ import { Device } from '../types/device';
 })
 export class DeviceComponent implements OnInit {
   @Input() device!: Device;
+  deviceStatus = DeviceStatus;
 
   constructor(private deviceService: DeviceService) {}
 
@@ -17,14 +18,14 @@ export class DeviceComponent implements OnInit {
   getColor(): string {
     // enum ?
     switch (this.device.status) {
-      case 'allumé':
-        return 'green';
+      case DeviceStatus.on:
+        return Color.green;
 
-      case 'éteint':
-        return 'red';
+      case DeviceStatus.off:
+        return Color.red;
 
       default:
-        return 'black';
+        return Color.black;
     }
   }
 

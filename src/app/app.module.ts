@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 import { DeviceService } from './services/device.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { UserService } from './services/user.service';
-
-import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { MyFirstComponent } from './my-first/my-first.component';
@@ -55,6 +55,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
+    HttpClientModule,
   ],
   providers: [DeviceService, AuthService, AuthGuard, UserService],
   bootstrap: [AppComponent],
