@@ -1,5 +1,5 @@
 import { Subject } from 'rxjs';
-import { Device } from '../types/device';
+import { Device, DeviceStatus } from '../types/device';
 
 export class DeviceService {
   devicesSubject = new Subject<Device[]>();
@@ -7,32 +7,32 @@ export class DeviceService {
     {
       id: 1,
       name: 'Machine à laver',
-      status: 'off',
+      status: DeviceStatus.off,
     },
     {
       id: 2,
       name: 'Télévision',
-      status: 'on',
+      status: DeviceStatus.on,
     },
     {
       id: 3,
       name: 'Ordinateur',
-      status: 'on',
+      status: DeviceStatus.on,
     },
     {
       id: 4,
       name: 'Téléphone',
-      status: 'on',
+      status: DeviceStatus.on,
     },
     {
       id: 5,
       name: 'Enceinte',
-      status: 'on',
+      status: DeviceStatus.on,
     },
     {
       id: 6,
       name: 'Vidéo projecteur',
-      status: 'off',
+      status: DeviceStatus.off,
     },
   ];
 
@@ -49,21 +49,22 @@ export class DeviceService {
 
   switchOnAll() {
     this.devices.forEach((device) => {
-      device.status = 'on';
+      device.status = DeviceStatus.on;
     });
     this.emitDeviceSubject();
   }
 
   switchOffAll() {
     this.devices.forEach((device) => {
-      device.status = 'off';
+      device.status = DeviceStatus.off;
     });
     this.emitDeviceSubject();
   }
 
   toggleDeviceStatus(id: number) {
     const device = this.getDeviceById(id);
-    device.status = device.status === 'on' ? 'off' : 'on';
+    device.status =
+      device.status === DeviceStatus.on ? DeviceStatus.off : DeviceStatus.on;
   }
 
   addDevice(name: string, statut: string) {
