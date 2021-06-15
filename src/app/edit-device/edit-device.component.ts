@@ -16,7 +16,7 @@ export class EditDeviceComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     const name = form.value['name'];
-    const statut = form.value['status'];
+    const status = form.value['status'];
     this.deviceService.addDevice(name, status);
     this.router.navigate(['/devices']);
   }

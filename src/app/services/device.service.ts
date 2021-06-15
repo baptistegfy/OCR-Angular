@@ -6,7 +6,13 @@ import { Device, DeviceStatus } from '../types/device';
 @Injectable()
 export class DeviceService {
   devicesSubject = new Subject<Device[]>();
-  private devices: Device[] = [];
+  private devices: Device[] = [
+    {
+      id: 1,
+      name: 'MacBook Pro',
+      status: 'on',
+    },
+  ];
 
   constructor(private httpClient: HttpClient) {}
   emitDeviceSubject() {
@@ -40,7 +46,7 @@ export class DeviceService {
       device.status === DeviceStatus.on ? DeviceStatus.off : DeviceStatus.on;
   }
 
-  addDevice(name: string, statut: string) {
+  addDevice(name: string, status: string) {
     const deviceObject = {
       id: 0,
       name: '',
