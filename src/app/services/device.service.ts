@@ -67,7 +67,7 @@ export class DeviceService {
       device.status === DeviceStatus.on ? DeviceStatus.off : DeviceStatus.on;
   }
 
-  addDevice(name: string, statut: string) {
+  addDevice(name: string, status: string) {
     const deviceObject = {
       id: 0,
       name: '',
