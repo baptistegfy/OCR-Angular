@@ -6,7 +6,13 @@ import { Device, DeviceStatus } from '../types/device';
 @Injectable()
 export class DeviceService {
   devicesSubject = new Subject<Device[]>();
-  private devices: Device[] = [];
+  private devices: Device[] = [
+    {
+      id: 1,
+      name: 'MacBook Pro',
+      status: 'on',
+    },
+  ];
 
   constructor(private httpClient: HttpClient) {}
   emitDeviceSubject() {
