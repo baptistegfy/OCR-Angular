@@ -83,6 +83,7 @@ export class DeviceService {
       )
       .subscribe(
         (response) => {
+          console.log("it's OK !");
           this.devices = response;
           this.emitDeviceSubject();
         },
