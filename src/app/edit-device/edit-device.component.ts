@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Devices } from '../models/Devices.model';
 import { DeviceService } from '../services/device.service';
 
 @Component({
@@ -9,15 +10,33 @@ import { DeviceService } from '../services/device.service';
   styleUrls: ['./edit-device.component.scss'],
 })
 export class EditDeviceComponent implements OnInit {
-  defaultOnOff: string = 'off';
-  constructor(private deviceService: DeviceService, private router: Router) {}
+  useForm!: FormGroup;
+  constructor(
+    private formBuilder: FormBuilder,
+    private deviceService: DeviceService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.initForm();
+  }
 
-  onSubmit(form: NgForm) {
-    const name = form.value['name'];
-    const status = form.value['status'];
-    this.deviceService.addDevice(name, status);
+  initForm() {
+    this.useForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      status: ['', Validators.required],
+    });
+  }
+
+  onSubmit() {
+    const formValue = this.useForm.value;
+    const newDevice = new Devices(
+      formValue.name,
+      formValue.status,
+      formValue.id
+    );
+    this.deviceService.addDevice(newDevice);
+    console.log('newDevice:', newDevice);
     this.router.navigate(['/devices']);
   }
 }

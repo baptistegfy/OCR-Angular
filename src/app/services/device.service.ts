@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { Device, DeviceStatus } from '../types/device';
+import { Devices } from '../models/Devices.model';
 
 @Injectable()
 export class DeviceService {
@@ -46,17 +47,10 @@ export class DeviceService {
       device.status === DeviceStatus.on ? DeviceStatus.off : DeviceStatus.on;
   }
 
-  addDevice(name: string, status: string) {
-    const deviceObject = {
-      id: 0,
-      name: '',
-      status: '',
-    };
-    deviceObject.name = name;
-    deviceObject.status = status;
-    deviceObject.id = this.devices[this.devices.length - 1].id + 1;
-
-    this.devices.push(deviceObject);
+  addDevice(device: Devices) {
+    device.id = this.devices[this.devices.length - 1].id + 1;
+    this.devices.push(device);
+    console.log('device:', device);
     this.emitDeviceSubject();
   }
 
@@ -83,6 +77,7 @@ export class DeviceService {
       )
       .subscribe(
         (response) => {
+          console.log("it's OK !");
           this.devices = response;
           this.emitDeviceSubject();
         },
